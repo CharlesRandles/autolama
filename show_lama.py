@@ -17,9 +17,9 @@ html="""
   <body>
 """    
 form = cgi.FieldStorage()
-lamaId = form[id].value()
+lamaId = form['id'].value()
 sql = "select * from lama where id=?"
-cursor = database.getCursor().execute(sql, id)
+cursor = database.getCursor().execute(sql, lamaId)
 html += cursor.fetchone()
 html += """
   </body>
