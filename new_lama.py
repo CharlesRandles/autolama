@@ -15,9 +15,27 @@ cgitb.enable()
 print "Content-type: text/html"
 print
 
+html="""
+<html>
+  <head>
+    <title>Your shiny new LAMA!</title>
+  </head>
+  <body>
+"""
 print "Your lama:"
 
 form = cgi.FieldStorage()
+team_name = form['name'].value
+team_dept = form['dept'].value
+html += "      <h3>Team: {} Dept: {}</h3>\n".format((team_name, team_dept))
 practices = map(str, practices.getPractices())
 for practice in practices:
-    print practice + "=" + form[practice].value
+    html += "      {}: {}<br />".format((practice, form[practice].value))
+
+html += """
+  </body>
+</html>
+"""
+
+print html
+
