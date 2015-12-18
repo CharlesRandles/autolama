@@ -18,6 +18,6 @@ print
 print "Your lama:"
 
 form = cgi.FieldStorage()
-practices = practices.getPractices()
+practices = map(str, practices.getPractices())
 for practice in practices:
     print practice + "=" + form[practice]
