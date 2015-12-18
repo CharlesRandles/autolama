@@ -12,12 +12,12 @@ import cgi
 import cgitb
 cgitb.enable()
 
-def insert_statement(team_name, department_name, practice_list, fields):
+def write_lama(team_name, department_name, practice_list, fields):
     sql = "insert into lama (team_name, department_name, "
     values = "({},{},".format(team_name, department_name)
     for practice in practice_list:
         sql += practice + ","
-        values += fields[practice].value + ","
+        values += "'{}', ".format(fields[practice].value)
     sql = sql[0:-1] + ")"
     values = values[0:-1] + ");"
     sql = sql + " values " + values
