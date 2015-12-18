@@ -24,7 +24,7 @@ def insertStatement(team_name, department_name, practice_list, fields):
     return sql
 
 def getLamas(team_name):
-    cursor = db.getCursor()
+    cursor = database.getCursor()
     sql= "select id from lama where team_name=?"
     lamas = cursor.execute(sql, (team_name,))
     lamaIds = []
