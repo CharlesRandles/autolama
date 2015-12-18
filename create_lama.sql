@@ -8,8 +8,8 @@ drop table if exists lama;
 
 create table lama (
        id integer primary key autoincrement,
-       team text,
-       dept text,
+       team_name text,
+       department_name text,
        date_reported text
 );
 
