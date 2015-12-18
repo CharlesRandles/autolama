@@ -14,7 +14,7 @@ cgitb.enable()
 
 def insert_statement(team_name, department_name, practice_list, fields):
     sql = "insert into lama (team_name, department_name, "
-    values = "({},{},".format(team_name, department_name)
+    values = "('{}','{}',".format(team_name, department_name)
     for practice in practice_list:
         sql += practice + ","
         values += "'{}', ".format(fields[practice].value)
