@@ -17,7 +17,7 @@ def insert_statement(name, dept, practice_list, fields):
     values = "({},{},".format(name, dept)
     for practice in practice_list:
         sql += practice + ","
-        values += fields[practice] + ","
+        values += fields[practice].value + ","
     sql = sql[0:-1] + ")"
     values = values[0:-1] + ");"
     sql = sql + " values " + values
