@@ -12,7 +12,7 @@ import cgi
 import cgitb
 cgitb.enable()
 
-def insert_statement(team_name, department_name, practice_list, fields):
+def insertStatement(team_name, department_name, practice_list, fields):
     sql = "insert into lama (team_name, department_name, "
     values = "('{}','{}',".format(team_name, department_name)
     for practice in practice_list:
@@ -22,6 +22,14 @@ def insert_statement(team_name, department_name, practice_list, fields):
     values = values[0:-1] + ");"
     sql = sql + " values " + values
     return sql
+
+def getLamas(team_name):
+    sql= "select id from lama where team_name=?"
+    lamas = database.execute(sql, team_name)
+    lamaIds = []
+    for id in lamas:
+        lamaIds.append(id[0])
+    return lamaIds
 
 print "Content-type: text/html"
 print
@@ -42,8 +50,15 @@ practices = map(str, practices.getPractices())
 for practice in practices:
     html += "      {}: {}<br />".format(practice, form[practice].value)
 
-html += "<hr/>{}".format(insert_statement(team_name, team_dept, practices, form))
+insert = insertStatement(team_name, team_dept, practices, form)
+database.getCursor.executeDirect(insert);
 
+#Get LAMAs for this team.
+lamas=getLamas(team_name)
+html += "      <ul>"
+for lama_id in lamas:
+    html += '        <li><a href="show_lama.py?id={}">{}</a></li>'.format(lama_id, "Lama {}".format(lama_id))
+html += "      </ul>"
 html += """
   </body>
 </html>
