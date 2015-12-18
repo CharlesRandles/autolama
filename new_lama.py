@@ -12,7 +12,7 @@ import cgi
 import cgitb
 cgitb.enable()
 
-def write_lama(team_name, department_name, practice_list, fields):
+def insert_statement(team_name, department_name, practice_list, fields):
     sql = "insert into lama (team_name, department_name, "
     values = "({},{},".format(team_name, department_name)
     for practice in practice_list:
