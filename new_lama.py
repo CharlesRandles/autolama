@@ -6,6 +6,7 @@ Returns a page listing all LAMAs for this team.
 """
 
 import database
+import practices
 
 import cgi
 import cgitb
@@ -17,6 +18,6 @@ print
 print "Your lama:"
 
 form = cgi.FieldStorage()
-
-for k in form.keys()
-    print k + "=" + form[key]
+practices = practices.getPractices()
+for practice in practices:
+    print practice + "=" + form[practice]
