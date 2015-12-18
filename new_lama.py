@@ -12,7 +12,7 @@ import cgi
 import cgitb
 cgitb.enable()
 
-print "Content-type: text/text"
+print "Content-type: text/html"
 print
 
 print "Your lama:"
