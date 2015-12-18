@@ -25,7 +25,7 @@ def insertStatement(team_name, department_name, practice_list, fields):
 
 def getLamas(team_name):
     sql= "select id from lama where team_name=?"
-    lamas = database.execute(sql, team_name)
+    lamas = database.execute(sql, (team_name,))
     lamaIds = []
     for id in lamas:
         lamaIds.append(id[0])
