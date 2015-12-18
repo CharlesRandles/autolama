@@ -9,6 +9,7 @@ drop table if exists lama;
 create table lama (
        id integer primary key autoincrement,
        team text,
+       dept text,
        date_reported text
 );
 

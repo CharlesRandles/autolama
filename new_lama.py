@@ -12,6 +12,17 @@ import cgi
 import cgitb
 cgitb.enable()
 
+def insert_statement(name, dept, practice_list, fields):
+    sql = "insert into lama (name, dept, "
+    values = "({},{},".format(name, dept)
+    for practice in practice_list:
+        sql += practice + ","
+        values += fields[practice] + ","
+    sql = sql[0:-1] + ")"
+    values = values[0:-1] + ");"
+    sql = sql + " values " + values
+    return sql
+
 print "Content-type: text/html"
 print
 
@@ -22,15 +33,16 @@ html="""
   </head>
   <body>
 """
-print "Your lama:"
-
 form = cgi.FieldStorage()
 team_name = form['team_name'].value
 team_dept = form['department_name'].value
 html += "      <h3>Team: {} Dept: {}</h3>\n".format(team_name, team_dept)
 practices = map(str, practices.getPractices())
+
 for practice in practices:
     html += "      {}: {}<br />".format(practice, form[practice].value)
+
+html += "<hr/>{}".format(insert_statement(team_name, tem_dept, practices, form))
 
 html += """
   </body>
