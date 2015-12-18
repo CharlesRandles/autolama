@@ -15,3 +15,8 @@ print "Content-type: text/text"
 print
 
 print "Your lama:"
+
+form = cgi.FieldStorage()
+
+for k in form.keys()
+    print k + "=" + form[key]
