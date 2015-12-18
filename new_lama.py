@@ -51,7 +51,7 @@ for practice in practices:
     html += "      {}: {}<br />".format(practice, form[practice].value)
 
 insert = insertStatement(team_name, team_dept, practices, form)
-database.getCursor().executeDirect(insert);
+database.executeDirect(insert);
 
 #Get LAMAs for this team.
 lamas=getLamas(team_name)
