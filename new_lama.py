@@ -20,4 +20,4 @@ print "Your lama:"
 form = cgi.FieldStorage()
 practices = map(str, practices.getPractices())
 for practice in practices:
-    print practice + "=" + form[practice]
+    print practice + "=" + form[practice].value
