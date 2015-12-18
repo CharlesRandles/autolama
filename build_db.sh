@@ -1,5 +1,5 @@
 #!/bin/bash
 
-db=autolama.db
+DB=autolama.db
 
-sqlite3 $DB < cleandb.sql
+sqlite3 $DB < create_lama.sql
