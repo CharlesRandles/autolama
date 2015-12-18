@@ -27,10 +27,10 @@ print "Your lama:"
 form = cgi.FieldStorage()
 team_name = form['team_name'].value
 team_dept = form['department_name'].value
-html += "      <h3>Team: {} Dept: {}</h3>\n".format((team_name, team_dept))
+html += "      <h3>Team: {} Dept: {}</h3>\n".format(team_name, team_dept)
 practices = map(str, practices.getPractices())
 for practice in practices:
-    html += "      {}: {}<br />".format((practice, form[practice].value))
+    html += "      {}: {}<br />".format(practice, form[practice].value)
 
 html += """
   </body>
