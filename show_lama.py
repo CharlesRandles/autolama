@@ -6,7 +6,7 @@ import database
 import practices
 cgitb.enable()
 
-print "Content_type: text/html"
+print "Content-type: text/html"
 print
 
 html="""
