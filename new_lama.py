@@ -42,7 +42,7 @@ practices = map(str, practices.getPractices())
 for practice in practices:
     html += "      {}: {}<br />".format(practice, form[practice].value)
 
-html += "<hr/>{}".format(insert_statement(team_name, tem_dept, practices, form))
+html += "<hr/>{}".format(insert_statement(team_name, team_dept, practices, form))
 
 html += """
   </body>
