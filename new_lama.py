@@ -29,7 +29,7 @@ def getLamaIds(team_name):
     lamas = cursor.execute(sql, (team_name,))
     lamaIds = []
     for lama in lamas:
-        lamaIds.append((lama[0], lama([1]))
+        lamaIds.append((lama[0], lama[1]))
     return lamaIds
 
 print "Content-type: text/html"
