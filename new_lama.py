@@ -23,7 +23,7 @@ def insertStatement(team_name, department_name, practice_list, fields):
     sql = sql + " values " + values
     return sql
 
-def getLamas(team_name):
+def getLamaIds(team_name):
     cursor = database.getCursor()
     sql= "select id from lama where team_name=?"
     lamas = cursor.execute(sql, (team_name,))
@@ -62,10 +62,10 @@ new_lama.write()
 html += new_lama.to_html()
 
 #Get LAMAs for this team.
-lamas=getLamas(team_name)
+lamas=getLamaIds(team_name)
 html += "      <ul>"
 for lama_id in lamas:
-    html += '        <li><a href="show_lama.py?id={}">{}</a></li>'.format(lama_id, "Lama {}".format(lama_id))
+    html += '        <li><a href="show_lama.py?id={}">{}</a></li>\n'.format(lama_id, "Lama {}".format(lama_id))
 
 html += "      </ul>"
 html += """
