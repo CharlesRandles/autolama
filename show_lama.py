@@ -4,6 +4,7 @@ import cgi
 import cgitb
 import database
 import practices
+import lama
 cgitb.enable()
 
 print "Content-type: text/html"
@@ -18,9 +19,8 @@ html="""
 """    
 form = cgi.FieldStorage()
 lamaId = form['id'].value
-sql = "select * from lama where id=?"
-cursor = database.getCursor().execute(sql, lamaId)
-html += str(cursor.fetchone())
+found_lama = lama.Lama.findById(lamaId)
+html += found_lama.to_html()
 html += """
   </body>
 </html>  
