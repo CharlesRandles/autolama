@@ -10,9 +10,7 @@ import practices
 import datetime
 
 def nowString():
-    now=datetime.datetime.now()
-    return "{} {} {}".format(now.day, now.month, now.year)
-    
+    return datetime.datetime.now().strftime("%H:%M %d/%m/%Y")
 
 class Team(object):
     def __init__(self, team_name, department_name):
