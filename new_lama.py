@@ -45,23 +45,21 @@ html="""
 form = cgi.FieldStorage()
 team_name = form['team_name'].value
 team_dept = form['department_name'].value
-new_lama=lama.Lama(team_name, 
-                   team_dept,
-                   form['standups'],
-                   form['retrospectives'],
-                   form['backlog_management'],
-                   form['product_ownership'],
-                   form['iteration_management'],
-                   form['track_and_visualise_progress'],
-                   form['building_quality_in'],
-                   form['adaptive_planning'])
+results={}
+results['standups']=form['standups'].value
+results['retrospectives']=form['retrospectives']
+results['backlog_management']=form['backlog_management']
+results['product_ownership']=form['product_ownership']
+results['iteration_management']=form['iteration_management']
+results['track_and_visualise_progress']=form['track_and_visualise_progress']
+results['building_quality_in']=form['building_quality_in']
+results['adaptive_planning']=form['adaptive_planning']
+new_lama=lama.Lama(lama.Team(team_name, team_dept), results)
 
 #Save it!
 new_lama.write()
                    
 html += new_lama.to_html()
-
-
 
 #Get LAMAs for this team.
 lamas=getLamas(team_name)
