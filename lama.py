@@ -23,7 +23,10 @@ class Team(object):
 class Lama(object):
     def __init__(self, team, results, date_reported=None):
         self.team = team
-        self.date_reported = date_reported
+        if date_reported is not None:
+            self.date_reported = date_reported
+        else:
+            self.date_reported = nowString()
         self.standups = results['standups']
         self.retrospectives = results['retrospectives']
         self.backlog_management = results['backlog_management']
@@ -125,8 +128,8 @@ class Lama(object):
         results['adaptive_planning']=record[9]
 
         team = Team(record[0], record[1])
-        lama = Lama(team,results)
-        lama.date_reported=record[10]
+        lama = Lama(team,results, record[10])
+
         cursor.close()
         return lama
 
