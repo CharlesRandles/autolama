@@ -21,7 +21,7 @@ class Team(object):
 
 
 class Lama(object):
-    def __init__(self, team, date_reported=None, results):
+    def __init__(self, team, results, date_reported=None):
         self.team = team
         self.date_reported = date_reported
         self.standups = results['standups']
