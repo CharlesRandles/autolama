@@ -115,7 +115,7 @@ class Lama(object):
         where id=?"""
 
         cursor = database.getCursor()
-        cursor.execute(sql, str(lamaID))
+        cursor.execute(sql)
         record = cursor.fetchone()
         results={}
         results['standups']=record[2]
