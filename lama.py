@@ -90,7 +90,7 @@ class Lama(object):
                           self.track_and_visualise_progress,
                           self.building_quality_in,
                           self.adaptive_planning,
-                          self.nowString()))
+                          nowString()))
         
 
     @classmethod
