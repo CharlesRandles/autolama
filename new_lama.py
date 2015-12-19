@@ -6,10 +6,10 @@ Returns a page listing all LAMAs for this team.
 """
 
 import database
-import practices
-
+import lama
 import cgi
 import cgitb
+
 cgitb.enable()
 
 def insertStatement(team_name, department_name, practice_list, fields):
@@ -45,14 +45,23 @@ html="""
 form = cgi.FieldStorage()
 team_name = form['team_name'].value
 team_dept = form['department_name'].value
-html += "      <h3>Team: {} Dept: {}</h3>\n".format(team_name, team_dept)
-practices = map(str, practices.getPractices())
+new_lama=lama.Lama(team_name, 
+                   department_name,
+                   form['standups'],
+                   form['retrospectives'],
+                   form['backlog_management'],
+                   form['product_ownership'],
+                   form['iteration_management'],
+                   form['track_and_visualise_progress'],
+                   form['building_quality_in'],
+                   form['adaptive_planning'])
 
-for practice in practices:
-    html += "      {}: {}<br />".format(practice, form[practice].value)
+#Save it!
+new_lama.write()
+                   
+html += new_lama.to_html()
 
-insert = insertStatement(team_name, team_dept, practices, form)
-database.executeDirect(insert);
+
 
 #Get LAMAs for this team.
 lamas=getLamas(team_name)

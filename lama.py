@@ -54,6 +54,38 @@ class Lama(object):
                              self.adaptive_planning)
         return html
 
+    def write(self):
+        sql = """
+        insert into lama (
+          team_name,
+          department_name,
+          date_reported,
+          standups,
+          retrospectives,
+          backlog_management,
+          product_ownership,
+          iteration_management,
+          track_and_visualise_progress,
+          building_quality_in,
+          adaptive_planning)
+          values (?,?,?,?,?,?,?,?,?,?,?);"""
+        database.execute(sql,
+                         (self.team.name,
+                          self.team.department,
+                          'December.',
+                          self.standups,
+                          self.retrospectives,
+                          self.backlog_management,
+                          self.product_ownership,
+                          self.iteration_management,
+                          self.track_and_visualise_progress,
+                          self.building_quality_in,
+                          self.adaptive_planning))
+        
+
+          
+        
+
     @classmethod
     def findById(cls, lamaID):
         """Load a single LAMA from the database"""
@@ -86,7 +118,7 @@ class Lama(object):
 
         team = Team(record[0], record[1])
         lama = Lama(team,results)
-
+        cursor.close()
         return lama
 
 
