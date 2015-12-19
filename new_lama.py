@@ -46,7 +46,7 @@ form = cgi.FieldStorage()
 team_name = form['team_name'].value
 team_dept = form['department_name'].value
 new_lama=lama.Lama(team_name, 
-                   department_name,
+                   team_dept,
                    form['standups'],
                    form['retrospectives'],
                    form['backlog_management'],
