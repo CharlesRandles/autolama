@@ -81,7 +81,7 @@ class Lama(object):
         database.execute(sql,
                          (self.team.name,
                           self.team.department,
-                          'December.',
+                          nowString(),
                           self.standups,
                           self.retrospectives,
                           self.backlog_management,
