@@ -47,13 +47,13 @@ team_name = form['team_name'].value
 team_dept = form['department_name'].value
 results={}
 results['standups']=form['standups'].value
-results['retrospectives']=form['retrospectives']
-results['backlog_management']=form['backlog_management']
-results['product_ownership']=form['product_ownership']
-results['iteration_management']=form['iteration_management']
-results['track_and_visualise_progress']=form['track_and_visualise_progress']
-results['building_quality_in']=form['building_quality_in']
-results['adaptive_planning']=form['adaptive_planning']
+results['retrospectives']=form['retrospectives'].value
+results['backlog_management']=form['backlog_management'].value
+results['product_ownership']=form['product_ownership'].value
+results['iteration_management']=form['iteration_management'].value
+results['track_and_visualise_progress']=form['track_and_visualise_progress'].value
+results['building_quality_in']=form['building_quality_in'].value
+results['adaptive_planning']=form['adaptive_planning'].value
 new_lama=lama.Lama(lama.Team(team_name, team_dept), results)
 
 #Save it!
