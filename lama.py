@@ -32,7 +32,7 @@ class Lama(object):
           <span class="title">Team name: {}</span>
           <span class="title">Dept name: {}</span>
           <table class="lama_table">
-            <th><td>Practice</td><td>Maturity</td>
+            <tr><th>Practice</th><th>Maturity</th></tr>
             <tr><td>Standups</td><td>{}</td></tr>
             <tr><td>Retrospectives</td><td>{}</td></tr>
             <tr><td>Backlog Management</td><td>{}</td></tr>
