@@ -115,8 +115,6 @@ class Lama(object):
         where id=?"""
 
         cursor = database.getCursor()
-        print sql
-        print lamaID, type(lamaID)
         cursor.execute(sql, (str(lamaID),))
         record = cursor.fetchone()
         results={}
