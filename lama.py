@@ -7,6 +7,12 @@ Classes representing LAMAs.
 import unittest
 import database
 import practices
+import datetime
+
+def nowString():
+    now=datetime.datetime.now()
+    return "{} {} {}".format(now.day, now.month, now.year)
+    
 
 class Team(object):
     def __init__(self, team_name, department_name):
@@ -15,8 +21,9 @@ class Team(object):
 
 
 class Lama(object):
-    def __init__(self, team, results):
+    def __init__(self, team, date_reported=None, results):
         self.team = team
+        self.date_reported = date_reported
         self.standups = results['standups']
         self.retrospectives = results['retrospectives']
         self.backlog_management = results['backlog_management']
@@ -31,6 +38,7 @@ class Lama(object):
         <div class="lama">
           <span class="title">Team name: {}</span>
           <span class="title">Dept name: {}</span>
+          <span class="title">Date: {}</span>
           <table class="lama_table">
             <tr><th>Practice</th><th>Maturity</th></tr>
             <tr><td>Standups</td><td>{}</td></tr>
@@ -43,15 +51,16 @@ class Lama(object):
             <tr><td>Adaptive_Planning</td><td>{}</td></tr>
           </table>
         </div>""".format(self.team.name,
-                             self.team.department,
-                             self.standups,
-                             self.retrospectives,
-                             self.backlog_management,
-                             self.product_ownership,
-                             self.iteration_management,
-                             self.track_and_visualise_progress,
-                             self.building_quality_in,
-                             self.adaptive_planning)
+                         self.team.department,
+                         self.date_reported,
+                         self.standups,
+                         self.retrospectives,
+                         self.backlog_management,
+                         self.product_ownership,
+                         self.iteration_management,
+                         self.track_and_visualise_progress,
+                         self.building_quality_in,
+                         self.adaptive_planning)
         return html
 
     def write(self):
@@ -67,8 +76,8 @@ class Lama(object):
           iteration_management,
           track_and_visualise_progress,
           building_quality_in,
-          adaptive_planning)
-          values (?,?,?,?,?,?,?,?,?,?,?);"""
+          adaptive_planning,date_reported)
+          values (?,?,?,?,?,?,?,?,?,?,?,?);"""
         database.execute(sql,
                          (self.team.name,
                           self.team.department,
@@ -80,10 +89,8 @@ class Lama(object):
                           self.iteration_management,
                           self.track_and_visualise_progress,
                           self.building_quality_in,
-                          self.adaptive_planning))
-        
-
-          
+                          self.adaptive_planning,
+                          self.nowString()))
         
 
     @classmethod
@@ -99,7 +106,8 @@ class Lama(object):
         iteration_management,
         track_and_visualise_progress,
         building_quality_in,
-        adaptive_planning
+        adaptive_planning,
+        date_reported
         from lama
         where id=?"""
 
@@ -118,6 +126,7 @@ class Lama(object):
 
         team = Team(record[0], record[1])
         lama = Lama(team,results)
+        lama.date_reported=record[10]
         cursor.close()
         return lama
 
