@@ -66,7 +66,8 @@ lamas=getLamas(team_name)
 html += "      <ul>"
 for lama_id in lamas:
     html += '        <li><a href="show_lama.py?id={}">{}</a></li>'.format(lama_id, "Lama {}".format(lama_id))
-    html += "      </ul>"
+
+html += "      </ul>"
 html += """
   </body>
 </html>

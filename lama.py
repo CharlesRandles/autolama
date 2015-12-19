@@ -128,7 +128,7 @@ class Lama(object):
         results['adaptive_planning']=record[9]
 
         team = Team(record[0], record[1])
-        lama = Lama(team,results, record[10])
+        lama = Lama(team, results, record[10])
 
         cursor.close()
         return lama
